@@ -12,8 +12,8 @@ from httpx import AsyncClient
 from gsuid_core.logger import logger
 from gsuid_core.utils.download_resource.download_file import download
 
-from ..database.models import LOLUser
 from ..lol_config import majs_config
+from ..database.models import LOLUser
 from ..resource.RESOURCE_PATH import (
     CARD_PATH,
     HERO_LIST,
