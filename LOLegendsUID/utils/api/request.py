@@ -13,6 +13,7 @@ from gsuid_core.logger import logger
 from gsuid_core.utils.download_resource.download_file import download
 
 from ..database.models import LOLUser
+from ..lol_config import majs_config
 from ..resource.RESOURCE_PATH import (
     CARD_PATH,
     HERO_LIST,
@@ -521,7 +522,10 @@ class WeGameApi:
                 uid = json['id']
             else:
                 uid = ' 9999'
-            ck = await LOLUser.get_random_cookie(uid)
+            # 优先使用网页控制台填写的CK, 其次使用[lol添加ck]命令入库的CK池
+            ck = majs_config.get_config('wegame_cookie').data
+            if not ck:
+                ck = await LOLUser.get_random_cookie(uid)
             if ck:
                 header['Cookie'] = ck
             else:
