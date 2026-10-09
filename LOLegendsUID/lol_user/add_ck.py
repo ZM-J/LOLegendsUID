@@ -1,7 +1,7 @@
 from gsuid_core.models import Event
 
-from ..utils.database.models import LOLUser
 from ..utils.lol_config import majs_config
+from ..utils.database.models import LOLUser
 
 
 async def add_cookie(ev: Event, ck: str):
